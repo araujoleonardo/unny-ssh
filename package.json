@@ -10,7 +10,8 @@
     "tauri": "tauri",
     "test": "vitest run",
     "build:macos:app:local": "tauri build --bundles app --config src-tauri/tauri.macos-local.conf.json",
-    "package:macos:local": "tauri build --bundles app,dmg --config src-tauri/tauri.macos-local.conf.json"
+    "package:macos:local": "CI=true tauri build --bundles app,dmg --config src-tauri/tauri.macos-local.conf.json",
+    "bundle:macos:local": "CI=true tauri bundle --bundles dmg --config src-tauri/tauri.macos-local.conf.json"
   },
   "dependencies": {
     "@tauri-apps/api": "^2",

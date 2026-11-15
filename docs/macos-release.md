@@ -1,6 +1,7 @@
 # Preparação do instalador macOS
 
-Revisão de 14/11/2026, versão 0.1.0. O DMG ainda não foi gerado nesta etapa.
+Revisão de 14/11/2026, versão 0.1.0. DMG local ARM64 gerado e verificado;
+distribuição notarizada e teste de instalação continuam pendentes.
 
 ## Ajustes aplicados
 
@@ -37,6 +38,20 @@ Para gerar o DMG local posteriormente:
 ```sh
 npm run package:macos:local
 ```
+
+Se o executável release já estiver compilado, gere somente o instalador:
+
+```sh
+npm run bundle:macos:local
+```
+
+Os dois comandos de DMG definem `CI=true`. Nesse modo, o Tauri pula o AppleScript
+que personaliza a janela do Finder, evitando o erro de automação `-1743` sem
+alterar permissões do macOS. O DMG mantém o aplicativo e o atalho para
+Applications, com disposição padrão dos ícones. Não defina
+`TAURI_BUNDLER_DMG_IGNORE_CI=true`, pois isso reativa essa etapa.
+Esse comportamento está no
+[empacotador oficial do Tauri](https://github.com/tauri-apps/tauri/blob/dev/crates/tauri-bundler/src/bundle/macos/dmg/mod.rs).
 
 Os comandos locais usam o target padrão do Mac que compila. Aqui ele é
 `aarch64-apple-darwin` (Apple Silicon), sem suporte Intel incluído. Para uma
@@ -79,7 +94,7 @@ xcrun stapler validate src-tauri/target/release/bundle/macos/unny-ssh.app
 Monte o DMG final, copie o app para Applications em uma máquina de teste e valide
 abertura, persistência/reabertura do cofre e os fluxos SSH/editor/transferências/
 Docker. O teste deve incluir um download com quarentena, sem desativar Gatekeeper.
-Ainda faltam o DMG final, teste de instalação e aceite de uma release notarizada.
+Ainda faltam o teste de instalação e o aceite de uma release notarizada.
 
 ## Artefato local inspecionado
 
@@ -126,3 +141,13 @@ O `.app` local foi recompilado após a implementação de
 em cofre descartável e integridade `codesign --verify --deep --strict` aprovados.
 A configuração ad hoc, arquitetura ARM64, mínimo declarado e pendências de
 notarização/DMG/aceite permanecem os mesmos. O DMG não foi gerado nesta atualização.
+
+## Atualização: DMG sem automação do Finder
+
+Gerado `src-tauri/target/release/bundle/dmg/unny-ssh_0.1.0_aarch64.dmg`
+(5,37 MiB) com `CI=true`, usando o executável release existente.
+`hdiutil verify` aprovou a integridade. A imagem foi montada somente para leitura:
+aplicativo e atalho Applications presentes; `codesign --verify --deep --strict`
+aprovado no aplicativo dentro do DMG. A imagem foi desmontada após a validação.
+Não houve alteração de permissões do sistema, instalação ou publicação no GitHub.
+Continua sendo uma variante com assinatura ad hoc, sem notarização.
