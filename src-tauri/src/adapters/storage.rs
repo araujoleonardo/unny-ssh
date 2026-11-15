@@ -29,6 +29,9 @@ fn restrict(path: &Path, directory: bool) -> Result<()> {
         let script = "$ErrorActionPreference='Stop'; $p=$env:UNNY_ACL_PATH; $id=[System.Security.Principal.WindowsIdentity]::GetCurrent().User; $acl=Get-Acl -LiteralPath $p; $acl.SetAccessRuleProtection($true,$false); foreach($r in @($acl.Access)){[void]$acl.RemoveAccessRuleAll($r)}; $rule=New-Object System.Security.AccessControl.FileSystemAccessRule($id,'FullControl','ContainerInherit,ObjectInherit','None','Allow'); if(-not (Test-Path -LiteralPath $p -PathType Container)){$rule=New-Object System.Security.AccessControl.FileSystemAccessRule($id,'FullControl','Allow')}; $acl.AddAccessRule($rule); Set-Acl -LiteralPath $p -AclObject $acl";
         let status = Command::new("powershell.exe")
             .args(["-NoProfile", "-NonInteractive", "-Command", script])
+            // A PowerShell 7 parent can pass incompatible modules to Windows
+            // PowerShell 5.1 through an intermediate process such as this app.
+            .env_remove("PSModulePath")
             .env("UNNY_ACL_PATH", path)
             .stdout(Stdio::null())
             .stderr(Stdio::null())
@@ -171,6 +174,34 @@ impl Storage {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[cfg(windows)]
+    #[test]
+    fn windows_acl_ignores_incompatible_powershell_modules() {
+        let temp = tempfile::tempdir().unwrap();
+        let modules = temp.path().join("modules");
+        let security = modules.join("Microsoft.PowerShell.Security");
+        fs::create_dir_all(&security).unwrap();
+        fs::write(
+            security.join("Microsoft.PowerShell.Security.psd1"),
+            "@{RootModule='missing.psm1';ModuleVersion='1.0.0';CmdletsToExport=@('Get-Acl','Set-Acl')}",
+        )
+        .unwrap();
+        // Isolate the poisoned environment in a child; other tests run in parallel.
+        let output = std::process::Command::new(std::env::current_exe().unwrap())
+            .args([
+                "--ignored",
+                "--exact",
+                "adapters::storage::tests::crash_worker",
+            ])
+            .env("PSModulePath", modules)
+            .env("UNNY_TEST_CRASH_DIR", temp.path().join("vault"))
+            .env("UNNY_TEST_CRASH_STAGE", "before_write")
+            .output()
+            .unwrap();
+        // The worker reaches publication only after restricting the directory
+        // and lock file. A module-loading failure instead exits with a test panic.
+        assert_eq!(output.status.code(), Some(73));
+    }
     #[test]
     fn write_failures_keep_previous_generation() {
         let temp = tempfile::tempdir().unwrap();

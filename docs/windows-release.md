@@ -48,5 +48,12 @@ SmartScreen/editor desconhecido. Nenhum certificado ou segredo adicional é exig
 para este build. Um build bem-sucedido não substitui testar instalação, abertura,
 cofre, SSH e transferência no Windows. ARM64 e MSI não são gerados neste workflow.
 
+O cofre aplica ACLs usando Windows PowerShell 5.1. O subprocesso remove o
+`PSModulePath` herdado para que um terminal PowerShell 7 (incluindo o runner)
+não faça o 5.1 carregar módulos incompatíveis. As restrições de acesso continuam
+ativas. Um teste Windows cobre esse caso com um caminho de módulos inválidos
+injetado somente no processo filho. A causa e a solução estão documentadas pela
+[Microsoft](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_psmodulepath?view=powershell-5.1).
+
 Referências: [pipeline do Tauri](https://v2.tauri.app/distribute/pipelines/github/)
 e [instaladores Windows](https://v2.tauri.app/distribute/windows-installer/).
