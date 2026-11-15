@@ -33,6 +33,8 @@ struct Envelope {
 #[serde(deny_unknown_fields)]
 pub(crate) struct VaultPayload {
     pub(crate) profiles: Vec<serde_json::Value>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub(crate) profile_folders: Vec<serde_json::Value>,
     pub(crate) secrets: Vec<serde_json::Value>,
     pub(crate) known_hosts: Vec<serde_json::Value>,
     pub(super) draft_index: Vec<DraftRef>,
@@ -53,6 +55,7 @@ impl Drop for VaultPayload {
         for value in self
             .profiles
             .iter_mut()
+            .chain(self.profile_folders.iter_mut())
             .chain(self.secrets.iter_mut())
             .chain(self.known_hosts.iter_mut())
             .chain(self.compose_projects.iter_mut())

@@ -19,7 +19,7 @@
 Sequência aprovada pelo usuário em 13/11/2026. Tasks 1–3 implementadas em
 14/11/2026 e em **Ready for QA**, assim como as tasks 4–6, implementadas na mesma
 data. Tasks 7–9 também implementadas e em **Ready for QA**. Aceite multiplataforma
-pendente. Tasks 10–12 também implementadas e em **Ready for QA**; task 13 não iniciada. Os checkboxes principais permanecem abertos até o aceite completo.
+pendente. Tasks 10–12 também implementadas e em **Ready for QA**; task 13 em andamento parcial com a [revisão pré-instalador macOS](../macos-release.md). Os checkboxes principais permanecem abertos até o aceite completo.
 [Evidências 1–3](validation-1-3.md), [4–6](validation-4-6.md), [7–9](validation-7-9.md) e [10–12](validation-10-12.md). [PRD](prd.md), [spec](spec.md) e
 [estado](state.md) são as referências. Não existe design.md; requisitos visuais
 seguem o PRD até que um design adicional seja criado.

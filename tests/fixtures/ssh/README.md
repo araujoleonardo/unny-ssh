@@ -11,7 +11,9 @@ No Ubuntu, instale `openssh-server openssh-client`; `/run/sshd` precisa existir
 O script gera chaves temporárias, publica SSH somente em loopback e inicia um
 Agent próprio, passado ao processo de teste por `SSH_AUTH_SOCK`. Não modifica
 `~/.ssh`, `authorized_keys`, configuração SSH, Agent pessoal ou servidores reais.
-O servidor de teste restringe comandos a `/bin/sh -i` e ao binário SFTP conhecido.
+O servidor de teste usa o binário SFTP conhecido e executa solicitações de shell
+e exec por `/bin/sh`. Isso permite validar a abertura do terminal em uma pasta
+selecionada. As chaves autorizadas pertencem exclusivamente à fixture temporária.
 `StrictModes no` vale exclusivamente para essa configuração efêmera.
 
 A integração ignorada `services::sessions::tests::native_openssh` é executada pelo

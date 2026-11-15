@@ -1,8 +1,7 @@
 [package]
 name = "unny-ssh"
 version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
+description = "Workspace SSH com terminal, SFTP e gerenciamento Docker."
 edition = "2024"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -18,6 +17,7 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 tauri-build = { version = "2", features = [] }
 
 [dependencies]
+chrono = { version = "0.4", default-features = false, features = ["std"] }
 tauri = { version = "2", features = [] }
 tauri-plugin-single-instance = "2"
 argon2 = { version = "0.5", features = ["zeroize"] }

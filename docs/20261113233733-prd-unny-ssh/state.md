@@ -2,7 +2,7 @@
 
 ## Overall Progress: 0%
 
-## Current Status: Ready for QA
+## Current Status: In Progress
 
 ## Task Progress
 
@@ -18,7 +18,7 @@
 - [ ] 10.0 [Bloqueio integrado e recuperação de rascunhos](10.0_task.md): Ready for QA
 - [ ] 11.0 [Containers, imagens e volumes Docker](11.0_task.md): Ready for QA
 - [ ] 12.0 [Gerenciamento de projetos Docker Compose](12.0_task.md): Ready for QA
-- [ ] 13.0 [Aceite e distribuição multiplataforma](13.0_task.md): Not Started
+- [ ] 13.0 [Aceite e distribuição multiplataforma](13.0_task.md): In Progress
 
 Concluídas por aceite: 0 de 13 tarefas principais. Código das tasks 1–12 entregue,
 com testes locais e smoke macOS; aceite multiplataforma ainda pendente. O percentual
@@ -26,6 +26,18 @@ permanece em 0% porque tasks principais só contam após seus critérios e teste
 pertinentes serem aprovados. [Evidências 1–3](validation-1-3.md), [4–6](validation-4-6.md), [7–9](validation-7-9.md) e [10–12](validation-10-12.md).
 
 ## Blockers & Risks
+
+- Conexões JSON: importação/exportação `ssh-client-backup` v1 implementada com
+  exclusão de credenciais, pastas/metadados preservados, duplicidades ignoradas e
+  importação atômica. Smoke de diálogos/arquivo real aprovado no macOS; clientes
+  Windows/Linux pendentes. As pastas ainda não agrupam a lista visual. Detalhes
+  e evidências em [connections-json.md](../connections-json.md).
+
+- Pré-instalação macOS: metadados, mínimo declarado 13.0 e arraste da janela
+  ajustados; configuração de assinatura ad hoc local separada. Ambiente ARM64
+  sem identidades Developer ID válidas. DMG, assinatura/notarização pública,
+  instalação final, execução no macOS 13 e Intel/universal pendentes. Evidências
+  e comandos em [macos-release.md](../macos-release.md).
 
 - Tasks 10–12: pendentes clientes Windows/Linux, eventos físicos de suspensão,
   falhas físicas de disco/rede e matriz completa das ações na UI. Em Windows/Linux,
@@ -40,7 +52,7 @@ pertinentes serem aprovados. [Evidências 1–3](validation-1-3.md), [4–6](val
 
 - Tasks 1–12 implementadas e disponíveis para QA; não marcar como Completed antes
   da matriz nativa. Workflow macOS/Windows/Linux criado; ainda não executado remotamente.
-- Sem metadados Git/remoto neste workspace; não foi possível disparar CI.
+- CI remota ainda não executada nesta etapa.
 - Docker/Compose foram executados em VM Ubuntu 24.04 ARM64 isolada, criada somente
   para os testes. Cliente macOS e servidor Linux comprovados; não confundir com
   aceite da WebView do cliente Linux. Receita Vagrant anterior não executada.
@@ -65,10 +77,25 @@ pertinentes serem aprovados. [Evidências 1–3](validation-1-3.md), [4–6](val
   na spec antes da distribuição (13.0).
 - Bibliotecas: fixar versões depois das provas de compatibilidade (1.0–5.0).
 - Aceite: definir equipamento exato de referência e recrutar cinco usuários (13.0).
-- Distribuição: definir formatos, certificados e canal de entrega (13.0).
+- Distribuição macOS: fluxo local `.app`/DMG preparado; definir canal público,
+  disponibilizar Developer ID/notarização e decidir ARM64 ou universal (13.0).
 - Premissas do PRD: manter uso individual e servidores Linux até decisão diferente.
 
 ## Changelog
+
+- 2026-11-14: Adicionada importação/exportação JSON sem senhas, passphrases ou
+  chaves privadas, conforme arquivo fornecido. Schema validado no backend,
+  importação aditiva atômica, metadados persistidos no cofre e exportação por
+  whitelist. 39 testes frontend, 48 Rust, check/fmt/build e smoke nativo macOS
+  aprovados. Release local ARM64 recompilada e assinatura ad hoc validada.
+  Nenhum checkbox de aceite multiplataforma foi concluído.
+
+- 2026-11-14: Iniciada parcialmente a task 13 na revisão pré-instalador macOS.
+  37 testes frontend, 41 Rust e integrações nativas OpenSSH/SFTP aprovados;
+  build/check/fmt e auditoria npm de produção aprovados. Configurados metadados,
+  mínimo macOS 13.0, arraste da janela e build local ad hoc; certificados Apple
+  ausentes. Aceite multiplataforma permanece pendente; nenhum checkbox principal
+  foi concluído.
 
 - 2026-11-14: Implementadas tasks 10–12: coordenador de bloqueio, inatividade,
   blobs de rascunhos criptografados/recuperação/rotação e lock_failed autenticado;

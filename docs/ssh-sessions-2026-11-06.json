@@ -1,0 +1,194 @@
+{
+  "format": "ssh-client-backup",
+  "version": 1,
+  "exportedAt": "2026-11-06T13:23:57.763Z",
+  "note": "Senhas, passphrases e chaves privadas não são incluídas por segurança.",
+  "folders": [
+    {
+      "id": "5ffb4fcb-628a-4acc-a76e-f18c8f8c1787",
+      "name": "CONSINCO",
+      "createdAt": 1785262681404
+    },
+    {
+      "id": "38e1a6bf-ba52-4ea9-b14a-06b0b4b1cf3d",
+      "name": "HOMOLOGAÇÃO",
+      "createdAt": 1785262762003
+    },
+    {
+      "id": "3b8e31d4-ca2d-4cac-a973-4ff360ad9336",
+      "name": "VIEW",
+      "createdAt": 1785262774771
+    }
+  ],
+  "connections": [
+    {
+      "id": "9ed283e1-d6b5-4869-816b-771a65310ace",
+      "name": "Systock - Homologação - Marketplace",
+      "icon": "ssh",
+      "host": "177.39.23.71",
+      "port": 30064,
+      "username": "systock",
+      "authType": "password",
+      "keyFileName": "",
+      "folderId": "38e1a6bf-ba52-4ea9-b14a-06b0b4b1cf3d",
+      "createdAt": 1785261509468,
+      "updatedAt": 1785262788054
+    },
+    {
+      "id": "50309c4a-8d83-4b3d-92b4-71c7f5e6e8df",
+      "name": "Systock - ARROZ ESTRELA",
+      "icon": "openvpn",
+      "host": "192.168.0.241",
+      "port": 22,
+      "username": "systock",
+      "authType": "password",
+      "keyFileName": "",
+      "folderId": "5ffb4fcb-628a-4acc-a76e-f18c8f8c1787",
+      "createdAt": 1785263000414,
+      "updatedAt": 1789674121481
+    },
+    {
+      "id": "5c5ae842-28bd-4ecf-bd98-69916776e932",
+      "name": "Systock - GUANABARA",
+      "icon": "twingate",
+      "host": "10.101.104.113",
+      "port": 22,
+      "username": "supsystock",
+      "authType": "password",
+      "keyFileName": "",
+      "folderId": "5ffb4fcb-628a-4acc-a76e-f18c8f8c1787",
+      "createdAt": 1785263185679,
+      "updatedAt": 1791895473229
+    },
+    {
+      "id": "cd9288b3-4dd2-40ff-b22d-120bd61d7050",
+      "name": "Systock - VILA SUL COMERCIO",
+      "icon": "ssh",
+      "host": "147.15.102.158",
+      "port": 22,
+      "username": "systock",
+      "authType": "password",
+      "keyFileName": "",
+      "folderId": "5ffb4fcb-628a-4acc-a76e-f18c8f8c1787",
+      "createdAt": 1785263287708,
+      "updatedAt": 1789674226165
+    },
+    {
+      "id": "5c18cca1-de12-40c9-8bc9-52a62312d0bd",
+      "name": "Systock - Homologação",
+      "icon": "ssh",
+      "host": "177.39.23.71",
+      "port": 20064,
+      "username": "systock",
+      "authType": "password",
+      "keyFileName": "",
+      "folderId": "38e1a6bf-ba52-4ea9-b14a-06b0b4b1cf3d",
+      "createdAt": 1785263484136,
+      "updatedAt": 1789481073859
+    },
+    {
+      "id": "9a8493a6-68e1-4d96-a27c-b19b545f673d",
+      "name": "Systock - Interno - Setor Integração",
+      "icon": "ssh",
+      "host": "10.0.200.5",
+      "port": 22,
+      "username": "systock",
+      "authType": "password",
+      "keyFileName": "",
+      "folderId": "38e1a6bf-ba52-4ea9-b14a-06b0b4b1cf3d",
+      "createdAt": 1785263568253,
+      "updatedAt": 1785263577118
+    },
+    {
+      "id": "ef18a583-13e5-4950-b8a2-551964820db4",
+      "name": "Systock - CONCEITO (SSH)",
+      "icon": "ssh",
+      "host": "177.54.239.85",
+      "port": 10064,
+      "username": "systock",
+      "authType": "password",
+      "keyFileName": "",
+      "folderId": "3b8e31d4-ca2d-4cac-a973-4ff360ad9336",
+      "createdAt": 1785263649093,
+      "updatedAt": 1785263796416
+    },
+    {
+      "id": "f72e8d1a-23d2-4466-8e33-652fe2763653",
+      "name": "Systock - ISAPA(SSH)",
+      "icon": "ssh",
+      "host": "168.75.107.1",
+      "port": 22,
+      "username": "systok",
+      "authType": "key",
+      "keyFileName": "systok.ppk",
+      "folderId": "3b8e31d4-ca2d-4cac-a973-4ff360ad9336",
+      "createdAt": 1785263822142,
+      "updatedAt": 1787067604340
+    },
+    {
+      "id": "82bcf0a8-29f3-4765-85bb-398742204106",
+      "name": "Systock - RAVENA (SSH)",
+      "icon": "ssh",
+      "host": "ravena.servehttp.com",
+      "port": 10064,
+      "username": "systock",
+      "authType": "password",
+      "keyFileName": "",
+      "folderId": "3b8e31d4-ca2d-4cac-a973-4ff360ad9336",
+      "createdAt": 1785264410903,
+      "updatedAt": 1785264519819
+    },
+    {
+      "id": "903ef76d-cd7b-43e4-acdb-89ed4a3fc877",
+      "name": "Systock - Interno - Setor Integração 2",
+      "icon": "ssh",
+      "host": "10.0.200.146",
+      "port": 22,
+      "username": "systock",
+      "authType": "password",
+      "keyFileName": "",
+      "folderId": "38e1a6bf-ba52-4ea9-b14a-06b0b4b1cf3d",
+      "createdAt": 1786635482685,
+      "updatedAt": 1793368959871
+    },
+    {
+      "id": "78f76b4b-a9f7-4dd2-b9a6-84c954511d83",
+      "name": "Systock(V4) - Desenvolvimento",
+      "icon": "ssh",
+      "host": "10.20.200.110",
+      "port": 22,
+      "username": "systock",
+      "authType": "password",
+      "keyFileName": "",
+      "folderId": "38e1a6bf-ba52-4ea9-b14a-06b0b4b1cf3d",
+      "createdAt": 1787859018146,
+      "updatedAt": 1793107661127
+    },
+    {
+      "id": "c78939d1-d49c-4ba0-844d-6e4677106b49",
+      "name": "Systock - SUPERMERCADO REX",
+      "icon": "ssh",
+      "host": "10.10.2.83",
+      "port": 22,
+      "username": "systock",
+      "authType": "password",
+      "keyFileName": "",
+      "folderId": "5ffb4fcb-628a-4acc-a76e-f18c8f8c1787",
+      "createdAt": 1789666480882,
+      "updatedAt": 1789674182726
+    },
+    {
+      "id": "ff2ab050-ad1f-4c7a-a2ba-3569248c4540",
+      "name": "Systock - SUPERMERCADO VIANENSE",
+      "icon": "vpn",
+      "host": "172.16.9.171",
+      "port": 22,
+      "username": "systock",
+      "authType": "password",
+      "keyFileName": "",
+      "folderId": "5ffb4fcb-628a-4acc-a76e-f18c8f8c1787",
+      "createdAt": 1789668776305,
+      "updatedAt": 1789674301486
+    }
+  ]
+}

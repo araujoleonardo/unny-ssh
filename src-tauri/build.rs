@@ -37,6 +37,8 @@ fn main() {
             "clipboard_write",
             "clipboard_read",
             "profiles_list",
+            "profiles_import",
+            "profiles_export",
             "profile_put",
             "profile_duplicate",
             "profile_delete_prepare",

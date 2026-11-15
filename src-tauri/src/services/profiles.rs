@@ -1,3 +1,4 @@
+pub mod backup;
 use crate::{
     ipc::{AppError, Result},
     services::vault::Vault,
@@ -88,6 +89,8 @@ pub struct StoredProfile {
     #[serde(flatten)]
     pub fields: ProfileInput,
     pub secret_id: Option<Uuid>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub backup: Option<backup::Metadata>,
 }
 #[derive(Clone, Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
@@ -242,7 +245,19 @@ impl Vault {
             } else {
                 None
             };
-            let result = StoredProfile { fields, secret_id };
+            let mut backup = previous
+                .as_ref()
+                .and_then(|p| p.backup.clone())
+                .unwrap_or_default();
+            backup.updated_at = backup::now();
+            if fields.auth_mode != AuthMode::Key {
+                backup.key_file_name.clear();
+            }
+            let result = StoredProfile {
+                fields,
+                secret_id,
+                backup: Some(backup),
+            };
             profiles.retain(|p| p.fields.id != result.fields.id);
             profiles.push(result.clone());
             payload.profiles = profiles

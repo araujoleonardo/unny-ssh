@@ -103,3 +103,15 @@ export function clipboardWrite(generation: number, text: string) {
 export function clipboardRead(generation: number) {
   return invoke<string>("clipboard_read", { request: { generation } });
 }
+
+export interface ProfileImportResult {
+  imported: number;
+  skipped: number;
+  foldersImported: number;
+}
+export const profilesImport = (generation: number) =>
+  invoke<ProfileImportResult | null>("profiles_import", {
+    request: { generation },
+  });
+export const profilesExport = (generation: number) =>
+  invoke<number | null>("profiles_export", { request: { generation } });

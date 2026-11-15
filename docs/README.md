@@ -18,3 +18,7 @@ técnicas e guias de uso conforme o projeto evoluir.
 
 - [Validação das tasks 7–9](20261113233733-prd-unny-ssh/validation-7-9.md): SFTP, edição remota e transferências.
 - [Validação das tasks 10–12](20261113233733-prd-unny-ssh/validation-10-12.md): rascunhos, bloqueio integrado, Docker e Compose em VM isolada.
+- [Preparação do instalador macOS](macos-release.md): builds locais, assinatura,
+  notarização e evidências da revisão anterior ao DMG.
+- [Conexões JSON](connections-json.md): importação/exportação sem credenciais,
+  formato compatível, duplicidades e limites.

@@ -201,3 +201,17 @@ renomear ou excluir entradas. A exclusão pede confirmação e pastas precisam e
 vazias. O terminal ocupa a faixa inferior e pode ser redimensionado ou recolhido.
 
 [Layout, navegação e evidências de validação](docs/workspace-layout.md).
+
+## Instalador macOS
+
+A [preparação da release macOS](docs/macos-release.md) registra os comandos,
+resultados e pendências de assinatura/notarização. Para preparar o `.app` local
+com assinatura ad hoc: `npm run build:macos:app:local`. Para gerar o DMG local:
+`npm run package:macos:local`. Esses comandos não produzem uma release notarizada.
+
+## Importação e exportação de conexões
+
+Na lateral ou no seletor de conexões, use **Importar JSON** / **Exportar JSON**.
+O formato `ssh-client-backup` v1 preserva os dados das conexões e das pastas, sem
+senhas, passphrases ou chaves privadas. A importação pede confirmação, adiciona
+novas conexões e ignora IDs existentes. [Formato e comportamento](docs/connections-json.md).

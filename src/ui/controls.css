@@ -628,3 +628,24 @@ dialog .muted {
     grid-column: 1 / 3;
   }
 }
+
+.profile-backup-actions {
+  display: flex;
+  gap: 4px;
+  padding: 6px 8px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--line);
+}
+.profile-backup-actions button {
+  flex: 1;
+  min-width: 0;
+  min-height: 28px;
+  padding: 4px 6px;
+  font-size: 11px;
+  line-height: 18px;
+  white-space: nowrap;
+}
+.profile-backup-actions .ui-icon {
+  width: 14px;
+  height: 14px;
+}

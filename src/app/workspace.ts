@@ -49,9 +49,9 @@ export function mountWorkspace(
   let currentView = "overview";
   let sidebarMode: "files" | "connections" = "connections";
   root.innerHTML = `<div class="workspace live-workspace">
-    <header class="topbar" data-tauri-drag-region><div class="connection-picker"><button id="connection-switcher" class="connection-switcher" aria-haspopup="menu" aria-expanded="false" aria-controls="connection-popover">${brand("mark", true)}<span id="active-name">Conexões</span></button><div id="connection-popover" role="menu" aria-label="Selecionar conexão" hidden></div></div><span class="server-badge" id="active-address"></span><label class="idle-setting" title="Bloquear após inatividade">${icon("lock")}<select id="lock-minutes" aria-label="Minutos de inatividade"><option>1</option><option>5</option><option>15</option><option>30</option><option>60</option><option>120</option><option>240</option></select><span>min</span></label><button id="vault-menu" title="Trocar senha mestra" aria-label="Configurações do cofre">${icon("settings")}</button><button id="lock" title="Bloquear cofre">${icon("lock")}<span>Bloquear</span></button></header>
+    <header class="topbar" data-tauri-drag-region><div class="connection-picker"><button id="connection-switcher" class="connection-switcher" aria-haspopup="menu" aria-expanded="false" aria-controls="connection-popover">${brand("mark", true)}<span id="active-name">Conexões</span></button><div id="connection-popover" role="menu" aria-label="Selecionar conexão" hidden></div></div><span class="server-badge" id="active-address" data-tauri-drag-region></span><label class="idle-setting" title="Bloquear após inatividade">${icon("lock")}<select id="lock-minutes" aria-label="Minutos de inatividade"><option>1</option><option>5</option><option>15</option><option>30</option><option>60</option><option>120</option><option>240</option></select><span>min</span></label><button id="vault-menu" title="Trocar senha mestra" aria-label="Configurações do cofre">${icon("settings")}</button><button id="lock" title="Bloquear cofre">${icon("lock")}<span>Bloquear</span></button></header>
     <nav class="rail" aria-label="Ferramentas"><button id="connections-tool" aria-label="Mostrar ou ocultar conexões" title="Conexões">${icon("folder")}</button><button id="overview-tool" aria-label="Visão geral" title="Visão geral">${icon("home")}</button><button id="docker-tool" aria-label="Docker" title="Docker">${icon("docker")}</button><div class="rail-bottom"><button id="terminal-tool" aria-label="Mostrar ou ocultar terminal" title="Terminal">${icon("terminal")}</button><button id="restore" aria-label="Restaurar layout" title="Restaurar layout">${icon("restore")}</button></div></nav>
-    <aside class="sidebar island" aria-label="Conexões e arquivos"><section id="connections-panel" class="side-panel"><div class="panel-heading"><h2>Conexões</h2><span class="count" id="profile-count">0</span><button id="show-files" aria-label="Voltar aos arquivos" title="Voltar aos arquivos">${icon("folder")}</button><button id="new-profile" aria-label="Nova conexão" title="Nova conexão">${icon("plus")}</button></div><label class="search">${icon("search")}<input id="search" placeholder="Pesquisar conexões" aria-label="Pesquisar conexões"></label><div class="profile-actions"><button id="edit-profile" disabled>Editar</button><button id="duplicate-profile" disabled>Duplicar</button><button id="remove-profile" disabled>Excluir</button></div><div id="connection-list" role="group" aria-label="Conexões salvas"></div><p id="profiles-empty" class="empty" role="status">Carregando conexões…</p></section><section id="files-panel" class="side-panel" hidden><div class="files-heading"><h2>Arquivos</h2><span class="context-label" id="files-context">Sem sessão</span><button id="show-connections" aria-label="Mostrar conexões salvas" title="Conexões salvas">${icon("connection")}</button></div><div id="file-browser"></div></section></aside>
+    <aside class="sidebar island" aria-label="Conexões e arquivos"><section id="connections-panel" class="side-panel"><div class="panel-heading"><h2>Conexões</h2><span class="count" id="profile-count">0</span><button id="show-files" aria-label="Voltar aos arquivos" title="Voltar aos arquivos">${icon("folder")}</button><button id="new-profile" aria-label="Nova conexão" title="Nova conexão">${icon("plus")}</button></div><label class="search">${icon("search")}<input id="search" placeholder="Pesquisar conexões" aria-label="Pesquisar conexões"></label><div class="profile-actions"><button id="edit-profile" disabled>Editar</button><button id="duplicate-profile" disabled>Duplicar</button><button id="remove-profile" disabled>Excluir</button></div><div class="profile-backup-actions"><button id="import-profiles">${icon("upload")}Importar JSON</button><button id="export-profiles">${icon("download")}Exportar JSON</button></div><div id="connection-list" role="group" aria-label="Conexões salvas"></div><p id="profiles-empty" class="empty" role="status">Carregando conexões…</p></section><section id="files-panel" class="side-panel" hidden><div class="files-heading"><h2>Arquivos</h2><span class="context-label" id="files-context">Sem sessão</span><button id="show-connections" aria-label="Mostrar conexões salvas" title="Conexões salvas">${icon("connection")}</button></div><div id="file-browser"></div></section></aside>
     <div id="sidebar-divider" class="divider vertical" role="separator" tabindex="0" aria-label="Largura do painel lateral" aria-orientation="vertical" aria-valuemin="190" aria-valuemax="420"></div>
     <main class="center"><section class="editor-island island" aria-label="Área de trabalho"><div class="editor-tabs"><div id="document-tabs"></div><div class="workspace-tools"><button id="overview-tab" class="tab-active" title="Início" aria-label="Início">${icon("home")}</button><button id="docker-tab">Docker</button><button id="drafts-tab">Rascunhos</button></div><span class="context-label" id="editor-context" hidden>Sem sessão</span></div><div class="session-overview" id="overview"><div class="welcome-brand">${brand("compact")}</div><h1 id="session-title">Abra uma conexão.</h1><p class="muted" id="session-detail">Cadastre um servidor e abra uma sessão SSH para trabalhar no terminal.</p><p id="session-error" role="alert"></p><div class="overview-actions"><button class="primary" id="connect-selected">Nova conexão</button><button id="disconnect" disabled>Desconectar</button></div></div><div id="documents-view" hidden><div id="document-editor"></div></div><div id="transfer-panel" hidden></div><div id="drafts-view" class="session-overview" hidden><p class="eyebrow">TRABALHO PROTEGIDO</p><h1>Rascunhos recuperáveis.</h1><p class="muted">Conecte o perfil original para recuperar em uma aba. Nada é gravado no servidor automaticamente.</p><div id="draft-list"></div></div><div id="docker-view" class="docker-live" hidden></div></section></main>
     <div id="terminal-divider" class="divider horizontal" role="separator" tabindex="0" aria-label="Altura do terminal" aria-orientation="horizontal" aria-valuemin="140" aria-valuemax="460"></div>
@@ -300,6 +300,45 @@ export function mountWorkspace(
     drawProfiles();
     drawContext();
   };
+  let backupBusy = false;
+  const transferProfiles = async (action: "import" | "export") => {
+    if (backupBusy) return;
+    backupBusy = true;
+    for (const id of ["import-profiles", "export-profiles"])
+      element<HTMLButtonElement>(`#${id}`).disabled = true;
+    try {
+      if (action === "import") {
+        const result = await api.profilesImport(generation);
+        if (!alive) return;
+        if (result) {
+          sidebarMode = "connections";
+          layout.sidebarHidden = false;
+          apply();
+          await refreshProfiles();
+          report(
+            `${result.imported} conexões importadas · ${result.skipped} já existentes ignoradas. Credenciais devem ser informadas ao conectar.`,
+          );
+        }
+      } else {
+        const count = await api.profilesExport(generation);
+        if (alive && count !== null)
+          report(
+            `${count} conexões exportadas sem senhas, passphrases ou chaves privadas.`,
+          );
+      }
+    } catch (error) {
+      report(safeError(error));
+    } finally {
+      backupBusy = false;
+      if (alive)
+        for (const id of ["import-profiles", "export-profiles"])
+          element<HTMLButtonElement>(`#${id}`).disabled = false;
+    }
+  };
+  element<HTMLButtonElement>("#import-profiles").onclick = () =>
+    void transferProfiles("import");
+  element<HTMLButtonElement>("#export-profiles").onclick = () =>
+    void transferProfiles("export");
   const newProfile = () =>
     editProfile(generation, undefined, () => void invoke(refreshProfiles));
   element<HTMLButtonElement>("#new-profile").onclick = newProfile;
@@ -528,6 +567,8 @@ export function mountWorkspace(
     element("#connection-popover"),
     {
       create: newProfile,
+      import: () => void transferProfiles("import"),
+      export: () => void transferProfiles("export"),
       manage: () => {
         sidebarMode = "connections";
         layout.sidebarHidden = false;

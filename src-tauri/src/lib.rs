@@ -164,6 +164,8 @@ pub fn run() {
             commands::connections::clipboard_write,
             commands::connections::clipboard_read,
             commands::connections::profiles_list,
+            commands::profile_backup::profiles_import,
+            commands::profile_backup::profiles_export,
             commands::connections::profile_put,
             commands::connections::profile_duplicate,
             commands::connections::profile_delete_prepare,

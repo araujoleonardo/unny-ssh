@@ -43,12 +43,14 @@ export class ConnectionPicker {
     private actions: {
       create(): void;
       manage(): void;
+      import?(): void;
+      export?(): void;
       select(session: string): void;
       close(session: string): void;
       connect(profile: Profile, newSession: boolean): void;
     },
   ) {
-    panel.innerHTML = `<div class="picker-actions"><button data-create role="menuitem">${icon("plus")}Nova conexão…</button><button data-manage role="menuitem">${icon("settings")}Gerenciar conexões…</button></div><label class="picker-search">${icon("search")}<input placeholder="Pesquisar conexões" aria-label="Pesquisar no seletor de conexões"></label><div class="picker-list"></div>`;
+    panel.innerHTML = `<div class="picker-actions"><button data-create role="menuitem">${icon("plus")}Nova conexão…</button><button data-manage role="menuitem">${icon("settings")}Gerenciar conexões…</button>${actions.import ? `<button data-import role="menuitem">${icon("upload")}Importar JSON…</button>` : ""}${actions.export ? `<button data-export role="menuitem">${icon("download")}Exportar JSON…</button>` : ""}</div><label class="picker-search">${icon("search")}<input placeholder="Pesquisar conexões" aria-label="Pesquisar no seletor de conexões"></label><div class="picker-list"></div>`;
     this.popup = new Popup(panel);
     this.input = panel.querySelector("input")!;
     this.list = panel.querySelector(".picker-list")!;
@@ -60,6 +62,14 @@ export class ConnectionPicker {
       this.popup.close();
       actions.manage();
     };
+    for (const name of ["import", "export"] as const) {
+      const button = panel.querySelector<HTMLButtonElement>(`[data-${name}]`);
+      if (button)
+        button.onclick = () => {
+          this.popup.close();
+          actions[name]?.();
+        };
+    }
     this.input.oninput = () => this.draw();
     trigger.onclick = () => this.popup.toggle(trigger);
     trigger.onkeydown = (e) => {

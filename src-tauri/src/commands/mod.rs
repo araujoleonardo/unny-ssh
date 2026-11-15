@@ -2,6 +2,7 @@ pub mod connections;
 pub mod docker;
 pub mod files;
 pub mod lifecycle;
+pub mod profile_backup;
 pub mod transfers;
 use crate::{
     ipc::{AppError, Result},
