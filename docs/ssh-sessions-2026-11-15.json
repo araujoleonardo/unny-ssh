@@ -1,0 +1,63 @@
+{
+  "format": "ssh-client-backup",
+  "version": 1,
+  "exportedAt": "2026-11-15T02:06:48.988Z",
+  "note": "Senhas, passphrases e chaves privadas não são incluídas por segurança.",
+  "connections": [
+    {
+      "id": "50309c4a-8d83-4b3d-92b4-71c7f5e6e8df",
+      "name": "Systock - ARROZ ESTRELA",
+      "host": "192.168.0.241",
+      "port": 22,
+      "username": "systock",
+      "authType": "password",
+      "keyFileName": "",
+      "createdAt": 1785263000414,
+      "updatedAt": 1789674121481
+    },
+    {
+      "id": "5c5ae842-28bd-4ecf-bd98-69916776e932",
+      "name": "Systock - GUANABARA",
+      "host": "10.101.104.113",
+      "port": 22,
+      "username": "supsystock",
+      "authType": "password",
+      "keyFileName": "",
+      "createdAt": 1785263185679,
+      "updatedAt": 1791895473229
+    },
+    {
+      "id": "cd9288b3-4dd2-40ff-b22d-120bd61d7050",
+      "name": "Systock - VILA SUL COMERCIO",
+      "host": "147.15.102.158",
+      "port": 22,
+      "username": "systock",
+      "authType": "password",
+      "keyFileName": "",
+      "createdAt": 1785263287708,
+      "updatedAt": 1789674226165
+    },
+    {
+      "id": "c78939d1-d49c-4ba0-844d-6e4677106b49",
+      "name": "Systock - SUPERMERCADO REX",
+      "host": "10.10.2.83",
+      "port": 22,
+      "username": "systock",
+      "authType": "password",
+      "keyFileName": "",
+      "createdAt": 1789666480882,
+      "updatedAt": 1789674182726
+    },
+    {
+      "id": "ff2ab050-ad1f-4c7a-a2ba-3569248c4540",
+      "name": "Systock - SUPERMERCADO VIANENSE",
+      "host": "172.16.9.171",
+      "port": 22,
+      "username": "systock",
+      "authType": "password",
+      "keyFileName": "",
+      "createdAt": 1789668776305,
+      "updatedAt": 1789674301486
+    }
+  ]
+}

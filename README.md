@@ -209,9 +209,15 @@ resultados e pendências de assinatura/notarização. Para preparar o `.app` loc
 com assinatura ad hoc: `npm run build:macos:app:local`. Para gerar o DMG local:
 `npm run package:macos:local`. Esses comandos não produzem uma release notarizada.
 
+## Instalador Windows
+
+O workflow [Windows release](.github/workflows/release-windows.yml) gera um
+instalador Windows x64 e publica na release ao enviar uma tag como `v0.1.0`.
+Consulte [os passos e requisitos de versão](docs/windows-release.md).
+
 ## Importação e exportação de conexões
 
 Na lateral ou no seletor de conexões, use **Importar JSON** / **Exportar JSON**.
-O formato `ssh-client-backup` v1 preserva os dados das conexões e das pastas, sem
+O formato `ssh-client-backup` v1 preserva os dados das conexões, sem
 senhas, passphrases ou chaves privadas. A importação pede confirmação, adiciona
 novas conexões e ignora IDs existentes. [Formato e comportamento](docs/connections-json.md).

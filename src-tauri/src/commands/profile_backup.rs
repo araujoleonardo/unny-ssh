@@ -46,7 +46,7 @@ pub async fn profiles_import(
         let backup = Backup::parse(&bytes)?;
         state.vault.lock().map_err(|_| AppError::io())?.authorize(r.generation)?;
         let message = format!(
-            "Importar {} conexões e {} pastas?\n\nConexões com IDs já existentes serão ignoradas. Nada será substituído. Senhas, passphrases e chaves privadas não serão importadas.\n\nAs pastas serão preservadas no arquivo exportado. A lista do aplicativo continua sem agrupamento.",
+            "Importar {} conexões e {} pastas?\n\nConexões com IDs já existentes serão ignoradas. Nada será substituído. Senhas, passphrases e chaves privadas não serão importadas.\n\nA lista do aplicativo continua sem agrupamento. O formato exportado não inclui pastas ou ícones.",
             backup.connections.len(), backup.folders.len()
         );
         let confirmed = app.dialog().message(message)

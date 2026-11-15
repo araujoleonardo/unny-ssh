@@ -22,3 +22,5 @@ técnicas e guias de uso conforme o projeto evoluir.
   notarização e evidências da revisão anterior ao DMG.
 - [Conexões JSON](connections-json.md): importação/exportação sem credenciais,
   formato compatível, duplicidades e limites.
+- [Release Windows](windows-release.md): instalador x64 e publicação automática
+  no GitHub ao enviar uma tag de versão.

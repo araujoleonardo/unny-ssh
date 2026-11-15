@@ -5,13 +5,15 @@ opções no dropdown da barra superior. O cofre precisa estar desbloqueado.
 A seleção do arquivo e do destino usa os diálogos nativos do sistema.
 
 O formato é `ssh-client-backup`, versão `1`, conforme o
-[arquivo de referência](ssh-sessions-2026-11-06.json): `exportedAt`, `note`,
-`folders` e `connections`, com os nomes de campos em camelCase.
+[arquivo de referência](ssh-sessions-2026-11-15.json): `exportedAt`, `note`,
+`connections`, com os nomes de campos em camelCase. O exportador não inclui
+`folders`, `icon` ou `folderId`.
 
-- Conexões preservam ID, nome, host, porta, usuário, `authType`, ícone,
-  `keyFileName`, `folderId`, `createdAt` e `updatedAt`.
-- Pastas preservam ID, nome e `createdAt` para uma posterior exportação. A lista
-  de conexões do aplicativo continua sem agrupamento em pastas.
+- Conexões preservam ID, nome, host, porta, usuário, `authType`,
+  `keyFileName`, `createdAt` e `updatedAt`.
+- Backups antigos com `folders`, `icon` e `folderId` continuam aceitos. Esses
+  metadados são mantidos no cofre, mas não são incluídos na exportação atual.
+  A lista de conexões continua sem agrupamento em pastas.
 - O diretório inicial do unny-ssh, quando definido, usa o campo opcional
   `initialDirectory`. Backups sem esse campo continuam compatíveis.
 - Os tipos de autenticação aceitos são `password`, `key` e `agent`.
@@ -73,3 +75,17 @@ Ele não é um backup completo do cofre.
 Os testes nativos de diálogos e arquivos desta funcionalidade ainda precisam ser
 repetidos no Windows/Linux. Nenhuma conexão do arquivo de referência foi aberta
 na validação; os testes usaram somente um cofre temporário, removido ao terminar.
+
+## Atualização do formato em 15/11/2026
+
+A referência atual contém somente `format`, `version`, `exportedAt`, `note`
+e `connections`. Cada conexão contém `id`, `name`, `host`, `port`, `username`,
+`authType`, `keyFileName`, `createdAt` e `updatedAt`. O campo opcional
+`initialDirectory` continua disponível quando definido no unny-ssh.
+A validação automatizada cobre o arquivo atualizado, defaults de metadados
+ausentes, reimportação do JSON exportado e compatibilidade com backups antigos.
+Validação desta atualização: 49 testes Rust aprovados, 11 ignorados por dependerem
+de fixtures externas; `npm run build`, `cargo check` e `cargo fmt -- --check`
+aprovados. O aviso de tamanho do chunk Monaco permanece. O smoke nativo descrito
+acima foi feito com a referência anterior. O instalador ainda precisa ser
+recompilado para incluir este ajuste.

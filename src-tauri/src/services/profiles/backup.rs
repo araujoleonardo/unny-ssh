@@ -10,6 +10,9 @@ use uuid::Uuid;
 
 pub const MAX_BYTES: usize = 2 * 1024 * 1024;
 const NOTE: &str = "Senhas, passphrases e chaves privadas não são incluídas por segurança.";
+fn default_icon() -> String {
+    "ssh".into()
+}
 fn invalid() -> AppError {
     AppError::new(
         "INVALID_BACKUP",
@@ -64,12 +67,14 @@ impl Default for Metadata {
 pub struct Connection {
     pub id: Uuid,
     pub name: String,
+    #[serde(default = "default_icon", skip_serializing)]
     pub icon: String,
     pub host: String,
     pub port: u16,
     pub username: String,
     pub auth_type: AuthMode,
     pub key_file_name: String,
+    #[serde(default, skip_serializing)]
     pub folder_id: Option<Uuid>,
     pub created_at: u64,
     pub updated_at: u64,
@@ -84,6 +89,7 @@ pub struct Backup {
     pub exported_at: String,
     #[serde(default)]
     pub note: String,
+    #[serde(default, skip_serializing)]
     pub folders: Vec<Folder>,
     pub connections: Vec<Connection>,
 }
@@ -318,8 +324,18 @@ mod tests {
                 .unwrap(),
         )
         .unwrap();
-        assert_eq!(value["folders"], original["folders"]);
-        assert_eq!(value["connections"], original["connections"]);
+        assert!(value.get("folders").is_none());
+        let mut expected = original["connections"].clone();
+        for connection in expected.as_array_mut().unwrap() {
+            connection.as_object_mut().unwrap().remove("icon");
+            connection.as_object_mut().unwrap().remove("folderId");
+        }
+        assert_eq!(value["connections"], expected);
+        let stored = stored(&reopened.payload().unwrap()).unwrap();
+        let metadata = stored[0].backup.as_ref().unwrap();
+        assert_eq!(metadata.icon, "twingate");
+        assert!(metadata.folder_id.is_some());
+        assert_eq!(reopened.payload().unwrap().profile_folders.len(), 1);
         assert_eq!(value["format"], "ssh-client-backup");
         assert_eq!(value["version"], 1);
         assert!(
@@ -443,7 +459,7 @@ mod tests {
     fn supplied_reference_imports_and_exports_in_the_same_schema() {
         let source = std::fs::read(
             std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-                .join("../docs/ssh-sessions-2026-11-06.json"),
+                .join("../docs/ssh-sessions-2026-11-15.json"),
         )
         .unwrap();
         let expected: Value = serde_json::from_slice(&source).unwrap();
@@ -456,8 +472,27 @@ mod tests {
             expected["connections"].as_array().unwrap().len()
         );
         let exported: Value = serde_json::from_slice(&vault.export_profiles(1).unwrap()).unwrap();
-        assert_eq!(exported["folders"], expected["folders"]);
+        assert!(exported.get("folders").is_none());
         assert_eq!(exported["connections"], expected["connections"]);
+    }
+    #[test]
+    fn minimal_schema_defaults_legacy_metadata_and_exports_only_current_fields() {
+        let mut source = document();
+        source.as_object_mut().unwrap().remove("folders");
+        let connection = source["connections"][0].as_object_mut().unwrap();
+        connection.remove("icon");
+        connection.remove("folderId");
+        let (_dir, mut vault) = fixture();
+        let result = vault.import_profiles(1, parse(&source)).unwrap();
+        assert_eq!(result.imported, 1);
+        assert_eq!(result.folders_imported, 0);
+        let exported: Value = serde_json::from_slice(&vault.export_profiles(1).unwrap()).unwrap();
+        assert_eq!(exported["connections"], source["connections"]);
+        assert!(exported.get("folders").is_none());
+        let reparsed = Backup::parse(&serde_json::to_vec(&exported).unwrap()).unwrap();
+        assert_eq!(reparsed.connections[0].icon, "ssh");
+        assert!(reparsed.connections[0].folder_id.is_none());
+        assert_eq!(vault.import_profiles(1, reparsed).unwrap().skipped, 1);
     }
     #[cfg(unix)]
     #[test]
