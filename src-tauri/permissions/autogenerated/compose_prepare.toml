@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-compose-prepare"
+description = "Enables the compose_prepare command without any pre-configured scope."
+commands.allow = ["compose_prepare"]
+
+[[permission]]
+identifier = "deny-compose-prepare"
+description = "Denies the compose_prepare command without any pre-configured scope."
+commands.deny = ["compose_prepare"]

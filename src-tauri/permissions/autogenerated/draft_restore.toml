@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-draft-restore"
+description = "Enables the draft_restore command without any pre-configured scope."
+commands.allow = ["draft_restore"]
+
+[[permission]]
+identifier = "deny-draft-restore"
+description = "Denies the draft_restore command without any pre-configured scope."
+commands.deny = ["draft_restore"]

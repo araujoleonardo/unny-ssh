@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-profile-put"
+description = "Enables the profile_put command without any pre-configured scope."
+commands.allow = ["profile_put"]
+
+[[permission]]
+identifier = "deny-profile-put"
+description = "Denies the profile_put command without any pre-configured scope."
+commands.deny = ["profile_put"]

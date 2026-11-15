@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-profile-delete-prepare"
+description = "Enables the profile_delete_prepare command without any pre-configured scope."
+commands.allow = ["profile_delete_prepare"]
+
+[[permission]]
+identifier = "deny-profile-delete-prepare"
+description = "Denies the profile_delete_prepare command without any pre-configured scope."
+commands.deny = ["profile_delete_prepare"]

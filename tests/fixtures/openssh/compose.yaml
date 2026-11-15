@@ -1,0 +1,7 @@
+services:
+  ssh:
+    build: .
+    ports: ["127.0.0.1:2222:22"]
+    volumes:
+      - ./runtime/id_ed25519.pub:/fixtures/public_key:ro
+    read_only: false

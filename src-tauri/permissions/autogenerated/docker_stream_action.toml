@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-docker-stream-action"
+description = "Enables the docker_stream_action command without any pre-configured scope."
+commands.allow = ["docker_stream_action"]
+
+[[permission]]
+identifier = "deny-docker-stream-action"
+description = "Denies the docker_stream_action command without any pre-configured scope."
+commands.deny = ["docker_stream_action"]

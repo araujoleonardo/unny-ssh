@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-compose-list"
+description = "Enables the compose_list command without any pre-configured scope."
+commands.allow = ["compose_list"]
+
+[[permission]]
+identifier = "deny-compose-list"
+description = "Denies the compose_list command without any pre-configured scope."
+commands.deny = ["compose_list"]

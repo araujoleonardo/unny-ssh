@@ -1,0 +1,630 @@
+/* Shared control scale: workspace 28/32 px, forms 36 px. */
+:root {
+  --control-height: 32px;
+  --control-compact: 28px;
+  --control-form: 36px;
+  --control-radius: 5px;
+  --control-border: #414449;
+  --control-bg: #202224;
+  --control-hover: #303338;
+}
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+button {
+  min-height: var(--control-height);
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 20px;
+  border-radius: var(--control-radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+button:hover:not(:disabled) {
+  background: var(--control-hover);
+}
+button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+button[aria-busy="true"] {
+  cursor: wait;
+}
+input:where(:not([type="checkbox"]):not([type="radio"])),
+select {
+  height: var(--control-height);
+  min-width: 0;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #c5c7ce;
+  background: var(--control-bg);
+  border: 1px solid var(--control-border);
+  border-radius: var(--control-radius);
+}
+input::placeholder,
+textarea::placeholder {
+  color: #7f838b;
+  opacity: 1;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+  flex: 0 0 16px;
+  accent-color: var(--accent);
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.primary,
+.live-workspace button.primary {
+  min-height: var(--control-form);
+  padding: 7px 12px;
+  display: inline-flex;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 20px;
+  background: #315386;
+  border: 1px solid #496b9d;
+  color: #e0e9ff;
+}
+.primary:hover:not(:disabled),
+.live-workspace button.primary:hover:not(:disabled) {
+  background: #3b6199;
+}
+.danger:hover:not(:disabled) {
+  background: #974044;
+}
+
+/* Forms share label spacing, field heights and action rows. */
+.vault-form {
+  gap: 12px;
+}
+.vault-form label {
+  gap: 6px;
+  min-width: 0;
+  font-size: 12px;
+  line-height: 18px;
+}
+.vault-form input:not([type="checkbox"]):not([type="radio"]),
+.vault-form select {
+  width: 100%;
+  height: var(--control-form);
+  padding: 7px 10px;
+  font:
+    12px/20px "SF Pro Text",
+    "Segoe UI",
+    Ubuntu,
+    sans-serif;
+  background: var(--control-bg);
+  border-color: var(--control-border);
+}
+.form-row {
+  grid-template-columns: minmax(0, 1fr) 88px;
+  gap: 12px;
+  align-items: start;
+}
+.credential-fields {
+  gap: 12px;
+  font-size: 12px;
+  line-height: 20px;
+  color: var(--muted);
+}
+.credential-fields p {
+  margin: 0;
+}
+.import-key {
+  align-self: flex-start;
+  border-color: var(--control-border);
+}
+.dialog-actions {
+  gap: 8px;
+  margin-top: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.dialog-actions button {
+  min-height: var(--control-form);
+  min-width: 88px;
+  padding: 7px 12px;
+}
+.dialog-actions button:not(.primary):not(.danger) {
+  border-color: var(--control-border);
+}
+dialog {
+  padding: 24px;
+  border-radius: 10px;
+  border-color: #414449;
+  background: #202224;
+  color: #c5c7ce;
+  max-height: calc(100dvh - 40px);
+  max-width: calc(100vw - 32px);
+}
+dialog h1 {
+  font-size: 21px;
+  line-height: 28px;
+  letter-spacing: -0.4px;
+  margin-bottom: 16px;
+}
+dialog .muted {
+  line-height: 20px;
+  margin-bottom: 16px;
+}
+.connection-dialog {
+  width: min(520px, calc(100vw - 32px));
+}
+.connection-dialog h1 {
+  padding-right: 24px;
+}
+.dialog-close {
+  width: 28px;
+  height: 28px;
+  min-height: 28px;
+  padding: 0;
+  top: 12px;
+  right: 12px;
+  line-height: 1;
+}
+.volume-option {
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 20px;
+}
+.volume-option input {
+  margin-top: 2px;
+}
+.draft-preview,
+.docker-inspection {
+  width: 100%;
+  max-width: 100%;
+}
+.draft-preview {
+  resize: vertical;
+  border: 1px solid var(--control-border);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.vault-screen {
+  padding: 64px 24px 32px;
+  background: radial-gradient(ellipse at 15% 0%, #252c36 0%, #181a1c 65%);
+}
+.vault-card {
+  width: min(400px, 100%);
+  animation: none;
+}
+.vault-card h1 {
+  font-size: 26px;
+  line-height: 32px;
+  letter-spacing: -0.6px;
+  margin-bottom: 12px;
+}
+.vault-card > .muted {
+  line-height: 20px;
+  margin-bottom: 24px;
+}
+.vault-screen footer {
+  width: min(400px, 100%);
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+}
+.vault-screen footer span {
+  float: none;
+}
+.vault-mark .brand-full {
+  width: 200px;
+  height: 47px;
+}
+.dialog-content .vault-mark .brand-full {
+  width: 180px;
+  height: 42.3px;
+}
+.brand-compact {
+  width: 140px;
+  height: 94px;
+}
+.welcome-brand {
+  margin-bottom: 24px;
+}
+.privacy-note {
+  font-size: 11px;
+  line-height: 18px;
+  margin: 16px 0 8px;
+}
+.text-button {
+  min-height: 28px;
+  padding: 4px 0;
+  font-size: 11px;
+}
+
+/* Header/toolbars use square icon targets and matched baselines. */
+.live-workspace .topbar {
+  gap: 8px;
+}
+.live-workspace .topbar > button {
+  height: 32px;
+  min-height: 32px;
+  padding: 5px 8px;
+  flex-shrink: 0;
+}
+.live-workspace #vault-menu {
+  width: 32px;
+  padding: 0;
+}
+.live-workspace .panel-heading,
+.live-workspace .files-heading {
+  min-height: 40px;
+  padding: 5px 10px;
+  flex-shrink: 0;
+}
+.live-workspace .panel-heading > button,
+.live-workspace .files-heading > button,
+.live-workspace .panel-heading #new-profile {
+  width: 28px;
+  height: 28px;
+  min-height: 28px;
+  padding: 0;
+  flex-shrink: 0;
+}
+.live-workspace h2 {
+  font-size: 12px;
+  line-height: 20px;
+}
+.live-workspace .rail button {
+  min-height: 32px;
+}
+.live-workspace .rail .ui-icon {
+  width: 20px;
+  height: 20px;
+}
+.live-workspace .file-actions {
+  gap: 2px;
+  padding: 0 8px 4px;
+}
+.live-workspace .file-actions button {
+  width: 28px;
+  height: 28px;
+  min-height: 28px;
+  padding: 0;
+}
+.live-workspace .profile-actions {
+  gap: 4px;
+  padding-bottom: 8px;
+}
+.live-workspace .profile-actions button {
+  min-height: 28px;
+  height: 28px;
+  padding: 4px 8px;
+  font-size: 11px;
+  line-height: 18px;
+}
+.live-workspace .profile-select {
+  display: block;
+  height: auto;
+  min-height: 64px;
+  text-align: left;
+  padding: 8px;
+}
+.live-workspace .profile-select strong {
+  line-height: 18px;
+}
+.live-workspace .profile-select small {
+  line-height: 14px;
+  margin-top: 2px;
+  font-size: 11px;
+}
+.live-workspace .profile-row > button:last-child {
+  width: 28px;
+  min-height: 28px;
+  padding: 0;
+  flex-shrink: 0;
+}
+.live-workspace .files-heading .context-label {
+  min-width: 0;
+}
+.live-workspace .remote-file {
+  min-height: 0;
+  justify-content: flex-start;
+}
+.live-workspace .editor-tabs {
+  height: 40px;
+  flex-shrink: 0;
+}
+.live-workspace #document-tabs {
+  align-items: center;
+  gap: 4px;
+}
+.live-workspace #document-tabs > button {
+  height: 28px;
+  min-height: 28px;
+  font-size: 11px;
+}
+.live-workspace .document-tab button {
+  min-height: 28px;
+  height: 28px;
+  padding: 4px 8px;
+}
+.live-workspace .document-tab button + button {
+  width: 28px;
+  padding: 0;
+  flex-shrink: 0;
+}
+.live-workspace .workspace-tools {
+  gap: 4px;
+}
+.live-workspace .workspace-tools button {
+  height: 28px;
+  min-height: 28px;
+  padding: 4px 8px;
+  line-height: 18px;
+}
+.live-workspace .terminal-island .panel-heading {
+  min-height: 36px;
+  padding: 3px 10px;
+}
+.live-workspace .terminal-island h2 {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.live-workspace .terminal-actions {
+  align-items: center;
+  flex-shrink: 0;
+  gap: 4px;
+}
+.live-workspace .terminal-actions button {
+  height: 28px;
+  min-height: 28px;
+  padding: 4px 6px;
+  line-height: 18px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.live-workspace .terminal-tabs {
+  min-height: 34px;
+  padding: 3px 10px;
+  gap: 4px;
+}
+.live-workspace .terminal-tab button {
+  min-height: 26px;
+  height: 26px;
+  padding: 3px 8px;
+  line-height: 18px;
+}
+.live-workspace .terminal-tab button + button {
+  width: 26px;
+  padding: 0;
+}
+.live-workspace .idle-setting {
+  height: 32px;
+  margin: 0;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.live-workspace .idle-setting select {
+  width: 46px;
+  height: 28px;
+  min-height: 28px;
+  padding: 3px 2px;
+  font-size: 11px;
+  line-height: 18px;
+  border-color: transparent;
+  background: transparent;
+}
+.live-workspace .overview-actions {
+  margin: 16px 0 0;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.live-workspace .overview-actions button {
+  min-height: 36px;
+  padding: 7px 12px;
+}
+.live-workspace .session-overview {
+  justify-content: safe center;
+}
+.live-workspace .session-overview .muted {
+  margin-bottom: 0;
+}
+.live-workspace .session-overview #session-error:empty {
+  display: none;
+}
+.live-workspace .statusbar {
+  font-size: 10px;
+  line-height: 16px;
+}
+
+/* Search containers own focus so their inputs never produce a second border. */
+.search,
+.live-workspace .search,
+.picker-search {
+  height: 32px;
+  min-height: 32px;
+  border: 1px solid var(--control-border);
+  border-radius: 5px;
+  background: var(--control-bg);
+  padding: 0 8px;
+  gap: 6px;
+}
+.search {
+  flex-shrink: 0;
+}
+.search .ui-icon,
+.picker-search .ui-icon {
+  width: 16px;
+  height: 16px;
+}
+.search input,
+.live-workspace .search input,
+.picker-search input {
+  height: 30px;
+  min-height: 0;
+  padding: 4px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-size: 12px;
+  line-height: 20px;
+  outline: none;
+}
+.search:focus-within,
+.picker-search:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.ide-popup button {
+  min-height: 32px;
+  padding: 6px 8px;
+  justify-content: flex-start;
+  font-size: 12px;
+  line-height: 18px;
+}
+.ide-popup button:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: -1px;
+}
+.picker-search {
+  margin: 8px 4px 4px;
+}
+.picker-row {
+  align-items: center;
+}
+.picker-row > button:first-child {
+  height: auto;
+  min-height: 52px;
+}
+.picker-row .picker-secondary {
+  width: 28px;
+  height: 28px;
+  min-height: 28px;
+  padding: 0 !important;
+  justify-content: center;
+}
+.file-context-menu .danger {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid #3c3e43;
+  margin-top: 4px;
+  padding-top: 8px;
+}
+.file-context-menu .danger:hover {
+  background: #513438;
+}
+.connection-switcher {
+  min-width: 0;
+  height: 32px;
+  min-height: 32px;
+}
+.connection-switcher .brand-mark,
+.connection-switcher .connection-badge {
+  width: 24px;
+  height: 24px;
+}
+.picker-chevron {
+  display: flex;
+  align-items: center;
+}
+
+.docker-toolbar {
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.docker-toolbar input {
+  background: var(--control-bg);
+  border-color: var(--control-border);
+  color: inherit;
+  height: 32px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.docker-toolbar button {
+  height: 32px;
+  white-space: nowrap;
+  border-color: var(--control-border);
+}
+.docker-live {
+  padding: 20px;
+}
+.docker-live h1 {
+  font-size: 22px;
+  line-height: 28px;
+}
+.docker-live .docker-nav {
+  gap: 4px;
+}
+.docker-live .docker-nav button {
+  min-height: 32px;
+  font-size: 12px;
+}
+.docker-resource,
+.draft-card {
+  border-radius: 7px;
+  border-color: #35383d;
+  background: #202224;
+  padding: 12px;
+}
+.docker-resource-heading {
+  align-items: flex-start;
+}
+.docker-resource h2 {
+  margin: 0;
+}
+.resource-state {
+  flex-shrink: 0;
+}
+.docker-actions {
+  gap: 6px;
+}
+.docker-actions button {
+  min-height: 28px;
+  padding: 4px 8px;
+  line-height: 18px;
+  border-color: var(--control-border);
+}
+.transfer-row button {
+  min-height: 28px;
+  padding: 4px 8px;
+  font-size: 11px;
+}
+@media (max-width: 950px) {
+  .live-workspace #lock span {
+    display: none;
+  }
+  .live-workspace #lock {
+    width: 32px;
+    padding: 0;
+  }
+  .live-workspace .terminal-actions {
+    gap: 2px;
+  }
+  .live-workspace .terminal-actions button {
+    font-size: 10px;
+    padding: 4px;
+  }
+  .transfer-row {
+    grid-template-columns: minmax(100px, 1fr) minmax(80px, 1fr) auto;
+  }
+  .transfer-row progress {
+    grid-column: 1 / 3;
+  }
+}

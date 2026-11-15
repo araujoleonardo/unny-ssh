@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-compose-remove"
+description = "Enables the compose_remove command without any pre-configured scope."
+commands.allow = ["compose_remove"]
+
+[[permission]]
+identifier = "deny-compose-remove"
+description = "Denies the compose_remove command without any pre-configured scope."
+commands.deny = ["compose_remove"]

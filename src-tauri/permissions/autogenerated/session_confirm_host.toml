@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-session-confirm-host"
+description = "Enables the session_confirm_host command without any pre-configured scope."
+commands.allow = ["session_confirm_host"]
+
+[[permission]]
+identifier = "deny-session-confirm-host"
+description = "Denies the session_confirm_host command without any pre-configured scope."
+commands.deny = ["session_confirm_host"]

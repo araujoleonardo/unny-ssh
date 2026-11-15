@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-draft-read"
+description = "Enables the draft_read command without any pre-configured scope."
+commands.allow = ["draft_read"]
+
+[[permission]]
+identifier = "deny-draft-read"
+description = "Denies the draft_read command without any pre-configured scope."
+commands.deny = ["draft_read"]

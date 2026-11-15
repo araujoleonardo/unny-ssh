@@ -1,0 +1,9 @@
+node_modules/
+dist/
+src-tauri/target/
+src-tauri/gen/
+tests/fixtures/openssh/runtime/
+tests/fixtures/docker-vm/.vagrant/
+.DS_Store
+.idea
+.vscode

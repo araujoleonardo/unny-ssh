@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-transfer-select-files"
+description = "Enables the transfer_select_files command without any pre-configured scope."
+commands.allow = ["transfer_select_files"]
+
+[[permission]]
+identifier = "deny-transfer-select-files"
+description = "Denies the transfer_select_files command without any pre-configured scope."
+commands.deny = ["transfer_select_files"]

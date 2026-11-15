@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-profile-duplicate"
+description = "Enables the profile_duplicate command without any pre-configured scope."
+commands.allow = ["profile_duplicate"]
+
+[[permission]]
+identifier = "deny-profile-duplicate"
+description = "Denies the profile_duplicate command without any pre-configured scope."
+commands.deny = ["profile_duplicate"]

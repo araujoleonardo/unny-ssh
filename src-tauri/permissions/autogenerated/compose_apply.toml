@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-compose-apply"
+description = "Enables the compose_apply command without any pre-configured scope."
+commands.allow = ["compose_apply"]
+
+[[permission]]
+identifier = "deny-compose-apply"
+description = "Denies the compose_apply command without any pre-configured scope."
+commands.deny = ["compose_apply"]

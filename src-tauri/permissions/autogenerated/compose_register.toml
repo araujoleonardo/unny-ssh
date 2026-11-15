@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-compose-register"
+description = "Enables the compose_register command without any pre-configured scope."
+commands.allow = ["compose_register"]
+
+[[permission]]
+identifier = "deny-compose-register"
+description = "Denies the compose_register command without any pre-configured scope."
+commands.deny = ["compose_register"]
